@@ -105,13 +105,14 @@ class ResumeFnNameFactory:
 
 
 def log(level, *args):
-    cur_level = int(os.environ.get("LOG_LEVEL", "0"))
+    # NOTE: setting `LOG_LEVEL` to number will be conflict with spdlog
+    cur_level = int(os.environ.get("SOT_LOG_LEVEL", "0"))
     if level <= cur_level:
         print(*args, end="")
 
 
 def log_do(level, fn):
-    cur_level = int(os.environ.get("LOG_LEVEL", "0"))
+    cur_level = int(os.environ.get("SOT_LOG_LEVEL", "0"))
     if level <= cur_level:
         fn()
 
